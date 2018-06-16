@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>JS Bin</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<svg width="300" height="150">
+<circle id="cLeft" class="circle-y" cx="110" cy="75" r="10" />
+<circle id="cCenter" class="circle-y" cx="150" cy="75" r="10" />
+<circle id="cRight" class="circle-y" cx="190" cy="75" r="10" />
+</svg>
+<svg width="300" height="150">
+<circle id="c-Left" class="circle-x" fill="red" cx="110" cy="75" r="10" />
+<circle id="c-Center" class="circle-x" fill="green" cx="150" cy="75" r="10" />
+<circle id="c-Right" class="circle-x" fill="yellow" cx="190" cy="75" r="10" />
+</svg>
+</body>
+<script type="text/javascript">
+let currentAnimationTime = 0;
+let currentAnimationTime2 = 0;
+const centreY = 75;
+const allCircle = document.querySelectorAll('.circle-y');
+console.log(allCircle);
+const animate = () => {
+allCircle[0].setAttribute('cy',centreY + 10 * Math.sin(currentAnimationTime));
+allCircle[1].setAttribute('cy',centreY + 10 * Math.sin(currentAnimationTime-1));
+allCircle[2].setAttribute('cy',centreY + 10 * Math.sin(currentAnimationTime-2));
+currentAnimationTime += 0.15;
+requestAnimationFrame(animate);
+}
+animate();
+/***在x轴上面来回运动***/
+const allCircle2 = document.querySelectorAll('.circle-x');
+const animate2 = () => {
+allCircle2[0].setAttribute('cx',150 + 30 * Math.sin(currentAnimationTime));
+allCircle2[1].setAttribute('cx',150 + 30 * Math.sin(currentAnimationTime-1));
+allCircle2[2].setAttribute('cx',150 + 30 * Math.sin(currentAnimationTime-2));
+currentAnimationTime2 += 0.15;
+//setTimeout(animate2,2000);
+requestAnimationFrame(animate2);
+}
+animate2();
+</script>
+</html>
